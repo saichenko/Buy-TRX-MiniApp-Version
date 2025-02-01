@@ -14,6 +14,7 @@ load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEB_APP_URL = os.getenv("WEB_APP_URL")
+PREVIEW_IMAGE_APP_URL = os.getenv("PREVIEW_IMAGE_APP_URL")
 
 dp = Dispatcher()
 
@@ -29,8 +30,10 @@ async def handle_all_messages(message: Message):
             url=WEB_APP_URL,
         ),
     )
-    await message.answer(
-        text=text,
+    await message.bot.send_photo(
+        chat_id=message.chat.id,
+        caption=text,
+        photo=PREVIEW_IMAGE_APP_URL,
         reply_markup=keyboard.as_markup(),
         parse_mode=ParseMode.HTML,
     )
