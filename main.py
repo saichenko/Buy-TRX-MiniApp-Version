@@ -27,7 +27,7 @@ async def handle_all_messages(message: Message):
     keyboard.button(
         text="Buy TRX",
         web_app=WebAppInfo(
-            url=WEB_APP_URL,
+            url=WEB_APP_URL + f"?telegram-mini-app/{message.from_user.username}",
         ),
     )
     await message.bot.send_photo(
